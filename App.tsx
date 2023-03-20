@@ -1,12 +1,39 @@
-import React from 'react';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Button } from '@ui-kitten/components';
-import { default as theme } from './theme.json'; // <-- Import app theme
+import * as React from 'react';
+import { Button, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default () => (
-  <ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button>HOME</Button>
-    </Layout>
-  </ApplicationProvider>
-);
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Details"
+        
+      />
+    </View>
+  );
+}
+
+function DetailsScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
