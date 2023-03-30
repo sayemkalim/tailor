@@ -13,15 +13,15 @@ export const DetailsScreen = ({ navigation }) => {
   };
 
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction}/>
-      <Divider/>
+      <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction} />
+      <Divider />
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1'>DETAILS</Text>
+        <Text category='h1'></Text>
       </Layout>
     </SafeAreaView>
   );
