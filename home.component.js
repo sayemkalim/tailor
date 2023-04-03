@@ -60,7 +60,7 @@ export const HomeScreen = ({ navigation }) => {
       <TopNavigation title='Ajanta Tailor' alignment='center' />
       <Divider />
 
-      <Thirsty />
+      <Thirsty navigation={navigation} />
 
       <Divider />
       <View style={{ flex: 1, backgroundColor: '#fff' }}>

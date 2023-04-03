@@ -22,7 +22,7 @@ const Payment = ({ navigation }) => {
      <TopNavigation title='All Order' alignment='center' accessoryLeft={BackAction}/>
      <Divider/>
     
-   <Thirsty show={'allOrder'}/>
+   <Thirsty navigation={navigation} show={'allOrder'}/>
     </>
   )
 }

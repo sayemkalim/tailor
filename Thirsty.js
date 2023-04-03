@@ -20,14 +20,14 @@ const jobTypes = ['Engineer', 'Manager', 'Designer', 'Developer', 'Salesperson']
 const { Navigator, Screen } = createStackNavigator();
 
 <Navigator screenOptions={{ headerShown: false }}>
-<Screen name='Card' component={Card}/>
+    <Screen name='Card' component={Card} />
 </Navigator>
 const AllOrder = Array.from({ length: 10 }, () => ({
     email: faker.internet.email(),
     jobType: faker.name.jobType(),
     randomNumber: Math.floor(Math.random() * 100),
 
-})); 
+}));
 
 const Current = Array.from({ length: 1 }, () => ({
     email: faker.internet.email(),
@@ -48,8 +48,8 @@ export default Thirsty = ({ show, navigation }) => {
     console.log('navigation', navigation);
 
     const navigateCards = () => {
-        navigation.navigate('Cards');   
-      };
+        navigation.navigate('Card');
+    };
 
     const [text, setText] = React.useState('Press any button');
     const [selected, setSelected] = React.useState();
@@ -76,7 +76,7 @@ export default Thirsty = ({ show, navigation }) => {
     const scrollY = React.useRef(new Animated.Value(0)).current;
     const handleClick = (item) => {
         navigateCards()
-       // console.log('pressed');
+        // console.log('pressed');
         // navigation.navigate('Card')
         // console.log(item);
     }
@@ -102,7 +102,7 @@ export default Thirsty = ({ show, navigation }) => {
                     </Button>
                     <Button
                         onPress={() => handleToggle(2)}
-                        style={ selected == 2 ||     show=='raghib' ? styles.buttonSelect : styles.button}
+                        style={selected == 2 || show == 'raghib' ? styles.buttonSelect : styles.button}
                     >Current</Button>
                     <Button
                         onPress={() => handleToggle(3)}
@@ -120,7 +120,7 @@ export default Thirsty = ({ show, navigation }) => {
 
         <Animated.FlatList
 
-            data={show == 'raghib' || selected==2 ? Current : AllOrder}
+            data={show == 'raghib' || selected == 2 ? Current : AllOrder}
             onScroll={Animated.event(
                 [{ nativeEvent: { contentOffset: { y: scrollY } } }],
                 { useNativeDriver: true }

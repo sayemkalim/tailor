@@ -9,7 +9,7 @@ import { useRoute } from '@react-navigation/native';
 
 
 const Card = ({e}) => {
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+    // <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
 
     const route = useRoute();
     const [currentDate, setCurrentDate] = useState('');

@@ -22,7 +22,7 @@ const Payment = ({ navigation }) => {
       <TopNavigation title='Pickup' alignment='center' accessoryLeft={BackAction} />
       <Divider />
 
-      <Thirsty show={'raghib'} />
+      <Thirsty navigation={navigation} show={'raghib'} />
     </>
   )
 }
