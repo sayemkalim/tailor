@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, useWindowDimensions } from 'react-native';
-import { Button, Layout,TopNavigationAction } from '@ui-kitten/components';
+import { Button, Layout,TopNavigationAction, TopNavigation,Icon   } from '@ui-kitten/components';
 import { Dimensions } from 'react-native'
 import Carousel from 'react-native-swipeable-carousel';
 import { useRoute } from '@react-navigation/native';
@@ -8,9 +8,20 @@ import { useRoute } from '@react-navigation/native';
 
 
 
-const Card = ({e}) => {
-    // <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
 
+
+const Card = ({e,navigation}) => {
+    // <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+    const BackAction = () => (
+        <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+      );
+      const BackIcon = (props) => (
+        <Icon {...props} name='arrow-back' />
+      );
+      
+      const navigateBack = () => {
+        navigation.goBack();
+      };
     const route = useRoute();
     const [currentDate, setCurrentDate] = useState('');
     const data = [
@@ -38,6 +49,8 @@ const Card = ({e}) => {
    
 
     return (
+        <>
+        <TopNavigation title='Order Details' alignment='center' accessoryLeft={BackAction}/>
         <View style={styles.container}>
             <View style={styles.cardContent}>
                 {/* <Image source={require('../assets/image.jpg')} style={styles.image} /> */}
@@ -74,6 +87,7 @@ const Card = ({e}) => {
 
             </View>
         </View>
+        </>
     );
 };
 

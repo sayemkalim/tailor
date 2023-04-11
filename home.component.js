@@ -3,7 +3,6 @@ import { SafeAreaView, StyleSheet,ImageBackground, Dimensions, ScrollView, View,
 import { Divider, Layout, TopNavigation } from '@ui-kitten/components'
 import { TabNavigator } from './AppNavigator';
 const { width } = Dimensions.get('window');
-import Test from './Test';
 import Thirsty from './Thirsty';
 export const HomeScreen = ({ navigation }) => {
   const [number, setNumber] = React.useState(1);
@@ -18,7 +17,7 @@ export const HomeScreen = ({ navigation }) => {
   const [online, setOnline] = useState('false')
 
 
-
+  // const scrollY = React.useRef(new Animated.Value(0)).current;
   const navigateDetails = () => {
     navigation.navigate('Order');
   };
@@ -34,7 +33,9 @@ export const HomeScreen = ({ navigation }) => {
   const navigateOrder = () => {
     navigation.navigate('Order');
   };
-   
+  const navigateLeader = () => {
+    navigation.navigate('Leader');
+  }; 
 
 
   const onlineOffline = () => {
@@ -57,13 +58,16 @@ export const HomeScreen = ({ navigation }) => {
   const imagess = {uri:     'https://cdn.dribbble.com/users/3281732/screenshots/11192830/media/7690704fa8f0566d572a085637dd1eee.jpg?compress=1&resize=1200x1200',};
   return (
     <>
+    
       <TopNavigation title='Ajanta Tailor' alignment='center' />
       <Divider />
 
       <Thirsty navigation={navigation} />
 
       <Divider />
+      
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <ScrollView>
         <TouchableOpacity
           onPress={navigateCard}
           style={styles.container}>
@@ -100,11 +104,21 @@ export const HomeScreen = ({ navigation }) => {
             style={styles.card}>
              <Text>Pickup</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={navigateLeader}
+            style={styles.card}>
+             <Text>LeaderBoard</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
-
+        <TouchableOpacity
+            onPress={navigateLeader}
+            style={styles.card}>
+             <Text>LeaderBoard</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
 
-
+      
 
     </>
   );
