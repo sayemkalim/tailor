@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native'
-import { Divider, Icon, Text, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
+import { Divider, Icon, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
@@ -8,73 +8,100 @@ import { ScrollView } from 'react-native-gesture-handler';
 const LeaderBoard = ({ navigation }) => {
   const [data, setData] = useState(
     [
-    {
-      id:1,name:'Sayem',orders:1
-    },
-    {
-      id:2,name:'Chola Tailor',orders:500
-    }, {
-      id:3,name:'Rajdhani Tailor',orders:500
-    }, {
-      id:4,name:'Ajanta Tailor',orders:85
-    }, {
-      id:5,name:'Famous Tailor',orders:20
-    }, {
-      id:6,name:'A One Tailor',orders:40
-    }, {
-      id:7,name:'Parkash Tailor',orders:15
-    }
-  ])
- 
-  const sortedData = [...data].sort((a, b,) => b.orders - a.orders );
-  console.log(sortedData[0].orders)
-     
+      {
+        id: 1, name: 'najmis', orders: 0, rank: ''
+      },
+      {
+        id: 2, name: 'raghib', orders: 2, rank: ''
+      },
+      {
+        id: 3, name: 'taazeem', orders: 2, rank: ''
+      }, {
+        id: 4, name: 'z', orders: 3, rank: ''
+      },
+
+    ])
 
 
-   
-  const BackAction = () => ( 
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+
+  useEffect(() => {
+    handle();
+  }, [])
+  const handle = () => {
+
+    const sortedData = [...data].sort((a, b) => b.orders - a.orders);
+
+    let rank = 1;
+    let prevOrders = sortedData[0].orders;
+    const rankedData = sortedData.map((item, index) => {
+      if (index > 0 && item.orders !== prevOrders) {
+        rank = index + 1;
+      }
+      prevOrders = item.orders;
+      return { ...item, rank: rank };
+    });
+
+    setData(rankedData);
+  }
+
+
+
+
+
+
+
+
+  const BackAction = () => (
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
   const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
   );
-  
+
   const navigateBack = () => {
     navigation.goBack();
   };
   const [date, setDate] = React.useState(new Date());
- 
+
+
+
 
   return (
     <>
-   
-     <TopNavigation title='LeaderBoard' alignment='center' accessoryLeft={BackAction}/>
-     <Divider/>
 
-     <Text category='h6' alignment='center'>
+      <TopNavigation title='LeaderBoard' alignment='center' accessoryLeft={BackAction} />
+      <Divider />
+
+      <Text category='h6' alignment='center'>
         Selected date: {date.toLocaleDateString()}
       </Text>
-   
+
       <View style={styles.tailorContainer}>
-      <Text >Rank</Text>
-      <Text >Name</Text>
-      <Text >Orders</Text>
-    </View>
-    <View style={styles.tailorContainer2}>
-      <Text >7.</Text>
-      <Text >Sayem</Text>
-      <Text >1</Text>
-    </View>
-   
-    {sortedData.map((item, id) => (
-      
-          <View key={id}style={styles.tailorContainer3}>
-          <Text >{id + 1 }.</Text>
+        <Text >Rank</Text>
+        <Text >Name</Text>
+        <Text >Orders</Text>
+      </View>
+      <View style={styles.tailorContainer2}>
+        <Text >7.</Text>
+        <Text >Sayem</Text>
+        <Text >1</Text>
+      </View>
+
+      {data.map((item, id) =>
+      (
+
+
+        // console.log('data', item.orders)
+
+
+        <View key={id} style={styles.tailorContainer3}>
+          <Text >{item.rank}</Text>
           <Text >{item.name}</Text>
           <Text >{item.orders}</Text>
         </View>
+
       ))}
-   
+
     </>
   )
 }
@@ -135,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     shadowColor: '#7d5ffe',
-    shadowOffset: { width: 0, height: 5},
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 5,
