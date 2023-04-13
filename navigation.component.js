@@ -8,6 +8,8 @@ import Pickup from './Pickup';
 import  Order  from './Order';
 import Card from './Card';
 import LeaderBoard from './LeaderBoard';
+import Category from './Category';
+import Gallery from './Gallery';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -20,6 +22,8 @@ const HomeNavigator = () => (
     <Screen name='Order' component={Order}/>
     <Screen name='Card' component={Card}/>
     <Screen name='Leader' component={LeaderBoard} />
+    <Screen name='Category' component={Category} />
+    <Screen name='Gallery' component={Gallery} />
   </Navigator>
 );
 export const AppNavigator = () => (

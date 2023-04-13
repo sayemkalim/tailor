@@ -36,7 +36,9 @@ export const HomeScreen = ({ navigation }) => {
   const navigateLeader = () => {
     navigation.navigate('Leader');
   }; 
-
+  const navigateCategory = () => {
+    navigation.navigate('Category');
+  }; 
 
   const onlineOffline = () => {
 
@@ -111,9 +113,9 @@ export const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </TouchableOpacity>
         <TouchableOpacity
-            onPress={navigateLeader}
+            onPress={navigateCategory}
             style={styles.card}>
-             <Text>LeaderBoard</Text>
+             <Text>Category</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
